@@ -82,12 +82,17 @@ extension ViewController: UITextFieldDelegate {
                         self?.field.text = nil
                     }
                 case .failure(let error):
-                    // UIAlert
-                    print(".failure")
+                    self?.showErrorAlert(errorMessage: error)
                 }
             }
         }
         return true
+    }
+    
+    func showErrorAlert(errorMessage: Error) {
+        let alert = UIAlertController(title: "Search Error", message: String(describing: errorMessage), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
